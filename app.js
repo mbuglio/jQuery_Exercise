@@ -8,6 +8,14 @@ $(document).ready(function () {
 
         
         const sortCriteria = $("#sortCriteria").val();
+
+        if(movies.length < 2){
+            $('#sortCriteria').hide();
+        }else{
+            $('#sortCriteria').show();
+        }
+
+
         if (sortCriteria === "title-asc") {
             movies.sort((a, b) => a.title.localeCompare(b.title));
         } else if (sortCriteria === "title-desc") {
@@ -31,6 +39,8 @@ $(document).ready(function () {
                 if (index !== -1) {
                     movies.splice(index, 1);
                 }
+                showMovieList();
+
             });
             $movieItem.append($removeButton);
             $("#movieList").append($movieItem);
@@ -66,6 +76,7 @@ $(document).ready(function () {
         $("#rating").val("");
     });
 
+    showMovieList();
     
     $("#sortCriteria").change(showMovieList);
 });
